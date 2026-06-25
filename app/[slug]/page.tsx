@@ -25,18 +25,17 @@ export default async function ChapterPage({ params }: { params: Promise<{ slug: 
   const prev = getPrevChapter(slug);
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4" style={{ backgroundColor: 'var(--color-bg-primary)' }}>
-      <div className="w-full max-w-4xl shadow-lg p-8" style={{
-        backgroundColor: 'var(--color-bg-primary)',
+    <div className="min-h-screen flex items-center justify-center p-4">
+      <div className="w-full max-w-4xl shadow-lg p-4 pr-0 pl-0 bg-gray-200" style={{
         borderColor: 'var(--color-border)',
         borderWidth: '1px',
         borderStyle: 'solid'
       }}>
-        <ChapterNavBar prev={prev} next={next} />
+        <div className="pr-8 pl-8"><ChapterNavBar prev={prev} next={next} /></div>
 
-        <div className="grid grid-cols-1 md:grid-cols-[1fr_250px] gap-12 mt-8 mb-2">
+        <div className="grid grid-cols-1 md:grid-cols-[1fr_250px] gap-12 mt-4 mb-4 pl-8 bg-[var(--color-bg-primary)]">
           <article>
-            <header className="mb-6 border-left border-gray-300 border-l-4 pl-4">
+            <header className="mb-6 border-left border-gray-300 border-l-4 pl-4 mt-8">
               {/* <div className="text-sm text-gray-500 mb-1">Module {frontMatter.module}</div> */}
               <h1 className="text-4xl font-bold mb-2">{frontMatter.title}</h1>
               <p className="text-lg text-gray-600">{frontMatter.description}</p>
@@ -47,18 +46,18 @@ export default async function ChapterPage({ params }: { params: Promise<{ slug: 
               <div className="h-4 bg-gray-200 rounded w-full mb-4"></div>
               <div className="h-4 bg-gray-200 rounded w-5/6 mb-4"></div>
             </div>}>
-              <div className="prose prose-lg max-w-none">
+              <div className="prose prose-lg max-w-none mb-8">
                 {content}
               </div>
             </Suspense>
           </article>
 
-          <div className="aside-column">
+          <div className="aside-column bg-[var(--color-aside-bg)] pr-8">
             {/* Asides will appear here */}
           </div>
         </div>
 
-        <ChapterNavBar prev={prev} next={next} />
+        <div className="pr-8 pl-8"><ChapterNavBar prev={prev} next={next} /></div>
       </div>
     </div>
   );
