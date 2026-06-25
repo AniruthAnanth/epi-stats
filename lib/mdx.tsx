@@ -18,6 +18,7 @@ export interface Chapter {
   description: string;
   module: number;
   order: number;
+  date?: string;
 }
 
 export async function getChapter(slug: string) {
