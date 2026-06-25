@@ -8,8 +8,9 @@ export default function MDXVideo({ children, ...props }: React.ComponentProps<'v
   // Clone children (source elements) and update their src
   const updatedChildren = React.Children.map(children, (child) => {
     if (React.isValidElement(child) && child.type === 'source') {
-      const src = child.props.src;
-      const updatedSrc = src?.startsWith('/') ? `${basePath}${src}` : src;
+      const childProps = child.props as any;
+      const src = childProps.src;
+      const updatedSrc = typeof src === 'string' && src.startsWith('/') ? `${basePath}${src}` : src;
       return React.cloneElement(child as React.ReactElement<any>, { src: updatedSrc });
     }
     return child;
