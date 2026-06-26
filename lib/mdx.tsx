@@ -34,10 +34,13 @@ export async function getChapter(slug: string) {
     options: {
       parseFrontmatter: true,
       mdxOptions: {
-        remarkPlugins: [remarkGfm, remarkMath],
+        remarkPlugins: [
+          remarkGfm,
+          [remarkMath, { singleDollarTextMath: false }]
+        ],
         rehypePlugins: [
           rehypeHighlight,
-          rehypeKatex,
+          [rehypeKatex, { strict: false, trust: true }],
         ],
       },
     },
